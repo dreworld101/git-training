@@ -7,6 +7,8 @@ import cucumber.api.java.en.When;
 import pages.LandingPage;
 import pages.Registration;
 
+import java.awt.*;
+
 public class RegistrationSteps {
     LandingPage landingPage = new LandingPage();
     Registration newuser = new Registration();
@@ -132,5 +134,53 @@ public class RegistrationSteps {
         Thread.sleep(2000);
         newuser.setAddressAliasField(myaddAlias);
         Thread.sleep(2000);
+    }
+
+    @When("User clicks an item to display and purchase")
+    public void userClicksAnItemToDisplayAndPurchase() throws InterruptedException, AWTException {
+        newuser.setPrintedDress5099();
+    }
+    @And("Clicks the Add to cart button in the product page")
+    public void clicksTheAddToCartButtonInTheProductPage() throws InterruptedException {
+        newuser.setAddToCartBtn();
+        Thread.sleep(4000);
+    }
+/*
+    @And("Clicks the Add to cart button")
+    public void clicksTheAddToCartButton() {
+        newuser.setPDress5099AddToCartBtn();
+    }
+*/
+    @And("User cancel the displayed pop up alert")
+    public void userCancelTheDisplayedPopUpAlert() throws InterruptedException, AWTException {
+        newuser.cancelAlert();
+    }
+
+    @And("Clicks the Shopping Cart button to display content")
+    public void clicksTheShoppingCartButtonToDisplayContent() {
+        newuser.setClickCartMenuBtn();
+    }
+
+    @Then("The added item is present in their shopping cart")
+    public void theAddedItemIsPresentInTheirShoppingCart() {
+        newuser.getOrderPageTitle();
+        newuser.PresenceOfPDress();
+        newuser.GetCartItemsNum();
+    }
+
+
+    @When("User Clicks on the Cart button to display their shopping cart content")
+    public void userClicksOnTheCartButtonToDisplayTheirShoppingCartContent() {
+        newuser.setClickCartMenuBtn();
+    }
+
+    @And("Clicks the cart content Qty minus button")
+    public void clicksTheCartContentQtyMinusButton() {
+        newuser.setCartQtyMinusBtn();
+    }
+
+    @Then("The deleted item is successfully removed from the shopping cart")
+    public void theDeletedItemIsSuccessfullyRemovedFromTheShoppingCart() {
+        newuser.setCartStatusBar();
     }
 }

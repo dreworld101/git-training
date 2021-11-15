@@ -3,9 +3,16 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.awt.*;
+import java.awt.event.InputEvent;
+import java.util.Iterator;
+import java.util.Set;
 
 import static framework.base.DriverContext.driver;
 
@@ -46,6 +53,18 @@ public class Registration {
 
     //My account page after successful account creation
     private By AccountNameText = By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a/span");
+
+
+    //Shopping cart operation elements
+    private By PrintedDress5099 = By.xpath("//body/div[@id='page']/div[2]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[4]/div[1]/div[2]/h5[1]/a[1]");
+    private By AddToCartBtn = By.xpath("//span[contains(text(),'Add to cart')]");
+    private By ClickCartMenuBtn = By.xpath("//header/div[3]/div[1]/div[1]/div[3]/div[1]/a[1]");
+    private By PdressImageInCart = By.xpath("/html[1]/body[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/a[1]/img[1]");
+    private By GetCartQuantity = By.xpath("//tbody/tr[@id='product_4_16_0_0']/td[5]/input[2]");
+    private By CartQtyMinusBtn = By.xpath("//body[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[5]/div[1]/a[1]/span[1]");
+    private By CartStatusBar = By.xpath("//p[contains(text(),'Your shopping cart is empty.')]");
+    private By clickProceedToCheckoutBtn = By.xpath("//a[@class='btn btn-default button button-medium']");
+
 
 
 
@@ -193,10 +212,77 @@ public class Registration {
     //User account page after account creation
     public void setAccountNameText(){
         String elementText = driver.findElement(AccountNameText).getText();
-        String A_Text = elementText;
         String E_Text = "charles Cooper";
-        Assert.assertEquals(elementText, A_Text);
+        Assert.assertEquals(E_Text, elementText);
         System.out.println("Name of logged in user displayed is " + elementText);
+
+    }
+
+    //Shopping Cart operation items - methods
+    public void setPrintedDress5099() throws InterruptedException, AWTException {
+        driver.findElement(PrintedDress5099).click();
+        Thread.sleep(3000);
+        }
+    public void setAddToCartBtn() throws InterruptedException {
+        new WebDriverWait(driver, 80).until(ExpectedConditions.elementToBeClickable(AddToCartBtn)).click();
+        //driver.findElement(AddToCartBtn).click();
+
+    }
+    public void cancelAlert() throws InterruptedException, AWTException {
+/*        String parentWin = driver.getWindowHandle();
+        System.out.println("Parent window id is: " + parentWin);
+        Set<String> windows = driver.getWindowHandles();
+        int count = windows.size();
+        System.out.println("Total number of windows is: " + count);
+        Iterator<String> it = windows.iterator();
+        while ((it.hasNext())){
+            String childWin = it.next();
+            if (!parentWin.equals(childWin)){
+                driver.switchTo().window(childWin);
+                //driver.findElement(clickProceedToCheckoutBtn).click();
+                Thread.sleep(4000);
+            }
+        }
+*/
+
+        String window = driver.getWindowHandle();
+        for(String windHandle : driver.getWindowHandles()){
+            driver.switchTo().window(windHandle);
+            System.out.println("Switch was successful");
+            driver.findElement(clickProceedToCheckoutBtn).click();
+        }
+
+
+
+    }
+
+    public void setClickCartMenuBtn(){
+        driver.findElement(ClickCartMenuBtn).click();
+    }
+    public void setClickProceedToCheckoutBtn(){
+        driver.findElement(clickProceedToCheckoutBtn);
+    }
+    public void getOrderPageTitle(){
+        String orderPageTitle = driver.getTitle();
+        String ExpectedTitle = "Order - My Store";
+        System.out.println("The title of the current page displayed is: " + orderPageTitle);
+        Assert.assertEquals(orderPageTitle,ExpectedTitle);
+    }
+    public boolean PresenceOfPDress(){
+        boolean CartImage = driver.findElement(PdressImageInCart).isDisplayed();
+        Assert.assertTrue(true);
+        return CartImage;
+    }
+    public void GetCartItemsNum(){
+        String cartVol = driver.findElement(GetCartQuantity).getAttribute("value");
+        System.out.println("The number of items in cart is: " + cartVol);
+    }
+    public void setCartQtyMinusBtn(){
+        driver.findElement(CartQtyMinusBtn).click();
+    }
+    public void setCartStatusBar(){
+        String cart_Status = driver.findElement(CartStatusBar).getText();
+        System.out.println("The cart status bar displays message: " + cart_Status);
 
     }
 

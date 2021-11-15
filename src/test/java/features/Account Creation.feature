@@ -23,5 +23,32 @@ Feature: Register and Create Account
     Then User account is successfully created after clicking Register button
 
     Examples:
-      | email            | firstName | first_Name | lastName | last_Name | password    | company     | address         | address2 | city   | postalCode | homeTel     | mobTel       | addAlias    | add_info|myaddAlias|
-      | testa3z@test.com | charles   | Charles    | Cooper   | Cooper    | password123 | ABZ Limited | 24 Apple Street | Sydenham | London | 10017      | 02384748999 | 076627889933 | 08994477489 | None    |Dis is it |
+      | email            | firstName | first_Name | lastName | last_Name | password    | company     | address         | address2 | city   | postalCode | homeTel     | mobTel       | addAlias    | add_info | myaddAlias  |
+      | testa999zz@test.com | charles   | Charles    | Cooper   | Cooper    | password123 | ABZ Limited | 24 Apple Street | Sydenham | London | 10017      | 02384748999 | 076627889933 | 08994477489 | None     | --Dis is it |
+
+
+  @mytest
+    Scenario: Add item into shopping cart and remove same
+      When User clicks an item to display and purchase
+      And Clicks the Add to cart button in the product page
+      And User cancel the displayed pop up alert
+      And Clicks the Shopping Cart button to display content
+      Then The added item is present in their shopping cart
+
+  @mytest
+   Scenario: Remove item from shopping cart
+      When User clicks an item to display and purchase
+      And Clicks the Add to cart button in the product page
+      And User cancel the displayed pop up alert
+      And Clicks the Shopping Cart button to display content
+      And Clicks the cart content Qty minus button
+      Then The deleted item is successfully removed from the shopping cart
+
+
+
+
+
+
+
+
+
