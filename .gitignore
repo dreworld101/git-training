@@ -1,2 +1,14 @@
 # Project exclude paths
 /target/
+/shelf/
+/workspace.xml
+.DS_Store
+.idea/workspace.xml
+/.idea
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+target/
+*.iml
+*.log*
