@@ -9,6 +9,7 @@ public class DeletePage1 {
     private By UserEmailField = By.id("email_create");
     private By CreateUserAccountBtn = By.id("SubmitCreate");
     private By CreateAccountErrorBox = By.id("create_account_error");
+    private By DatePicker_Day = By.id("days");
 
     public By getClickSignInBtn() {
         return ClickSignInBtn;
@@ -48,5 +49,13 @@ public class DeletePage1 {
 
     public void setAuthenticationPageHeading(By authenticationPageHeading) {
         AuthenticationPageHeading = authenticationPageHeading;
+    }
+
+    public By getDatePicker_Day() {
+        return DatePicker_Day;
+    }
+
+    public void setDatePicker_Day(By datePicker_Day) {
+        DatePicker_Day = datePicker_Day;
     }
 }
