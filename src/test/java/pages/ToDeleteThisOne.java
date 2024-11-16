@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 public class ToDeleteThisOne {
 
     private By AdditionalInfoField = By.id("other");
-    private By HomeTelField = By.id("phone");
-    private By MobTelField = By.id("phone_mobile");
+    private By HomeTelFld = By.id("phone");
+    private By MobTelFields = By.id("phone_mobile");
     private By AddressAliasField = By.id("alias");
 
     public By getAdditionalInfoField() {
@@ -14,11 +14,11 @@ public class ToDeleteThisOne {
     }
 
     public By getHomeTelField() {
-        return HomeTelField;
+        return HomeTelFld;
     }
 
     public By getMobTelField() {
-        return MobTelField;
+        return MobTelFields;
     }
 
     public By getAddressAliasField() {
