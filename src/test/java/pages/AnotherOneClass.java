@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 public class AnotherOneClass {
 
+    private By UserEmail = By.id("email");
     private By UserEmailValidationField = By.id("email");
     private By EnterPassword = By.id("passwd");
     private By DatePicker_Day = By.id("days");
@@ -85,5 +86,13 @@ public class AnotherOneClass {
 
     public void setUserAccountButton(By userAccountButton) {
         this.userAccountButton = userAccountButton;
+    }
+
+    public By getUserEmail() {
+        return UserEmail;
+    }
+
+    public void setUserEmail(By userEmail) {
+        UserEmail = userEmail;
     }
 }
